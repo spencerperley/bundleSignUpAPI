@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'bundle_update_status_api',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
