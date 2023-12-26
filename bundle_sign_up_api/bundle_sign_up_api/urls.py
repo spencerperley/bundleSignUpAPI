@@ -16,7 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from bundle_update_status_api.views import ActivateAutoDeliveryCreateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('ActivateAutoDelivery/', ActivateAutoDeliveryCreateView.as_view(),name="Create_ActivateAutoDelivery")
 ]
