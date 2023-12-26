@@ -9,7 +9,7 @@ class ActivateAutoDeliveryCreateViewTest(TestCase):
         client = Client()
 
         # Load test data from the JSON file
-        with open('testData/test_ActivateAutoDelivery_body.json') as file:
+        with open('bundle_update_status_api/testData/test_ActivateAutoDelivery_body.json') as file:
             test_data = json.load(file)
 
         # Send a POST request to your API endpoint
