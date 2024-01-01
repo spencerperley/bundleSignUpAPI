@@ -1,7 +1,10 @@
-name: Deploy to Development
+name: CI
 
 on:
   push:
+    branches:
+      - beta
+  pull_request:
     branches:
       - beta
 
