@@ -24,13 +24,6 @@ jobs:
 
            
         run: |
-          echo "GitHub Event: $GITHUB_EVENT_NAME"
-          echo "GitHub Repository: $GITHUB_REPOSITORY"
-          echo "GitHub Ref: $GITHUB_REF"
-          echo "GitHub Actor: $GITHUB_ACTOR"
-          echo "SSH Private Key: $PRIVATE_KEY"
-          echo "EC2 Hostname: $HOSTNAME"
-          echo "EC2 Username: $USER_NAME"
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
               cd /home/ubuntu/<PROJECT_DIRECTORY> &&
