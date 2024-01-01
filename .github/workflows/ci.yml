@@ -1,7 +1,10 @@
-name: Deploy to Development
+name: CI
 
 on:
   push:
+    branches:
+      - beta
+  pull_request:
     branches:
       - beta
 
@@ -13,12 +16,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Create SSH key file
+        run: echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/private_key.pem && chmod 600 ~/.ssh/private_key.pem
+
       - name: Set up SSH
         uses: webfactory/ssh-agent@v0.5.4
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          
+          ssh-private-key: ~/.ssh/private_key.pem
+
       - name: Deploy to EC2 Development
         run: |
-          # Replace with your actual EC2 details
-          ssh -i ${{ secrets.SSH_PRIVATE_KEY }} ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} "cd /home/ec2-user/bundleAPI/development && git pull origin beta"
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/private_key.pem ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} "cd /home/ec2-user/bundleAPI/development && git pull origin beta"
+
